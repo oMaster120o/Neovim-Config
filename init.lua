@@ -46,6 +46,13 @@ local util         = require "lspconfig/util"
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+lspconfig.asm_lsp.setup
+{
+  capabilities = capabilities,
+  cmd          = { "asm-lsp" },
+  filetypes    = { "asm" }
+}
+
 lspconfig.pyright.setup
 {
   capabilities = capabilities,
@@ -102,7 +109,7 @@ lspconfig.rust_analyzer.setup({
 local LSP_Complete = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'pyright', 'rust_analyzer', 'jsonls', 'lua_ls' }
+local servers = { 'asm_lsp', 'clangd', 'pyright', 'rust_analyzer', 'jsonls', 'lua_ls' }
 for _, lsp in ipairs(servers) do
   LSP_Complete[lsp].setup
   {

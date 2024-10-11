@@ -86,7 +86,7 @@ return{
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   local lspconfig = require('lspconfig')
-  lspconfig('pyright', 'rust_analyzer', 'jsonls', 'luals', 'clangd' ).setup
+  lspconfig('asm_lsp', 'pyright', 'rust_analyzer', 'jsonls', 'luals', 'clangd' ).setup
   {
     capabilities = capabilities,
   }
