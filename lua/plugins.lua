@@ -25,6 +25,7 @@ require("lazy").setup({
     require("nvim-tree").setup {}
   end
   },
+  {"nvim-treesitter/nvim-treesitter"},
 
   -- Snippets
   {"L3MON4D3/LuaSnip", version = "v2.*",  build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" }},
@@ -32,6 +33,7 @@ require("lazy").setup({
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {"ellisonleao/gruvbox.nvim"},
   {"craftzdog/solarized-osaka.nvim", lazy = false, priority = 1000},
+  {"rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000},
   Config = function()
 
     require("osaka").setup ({
@@ -50,5 +52,17 @@ require("lazy").setup({
     })
   end,
 
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function ()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "c++", "python", "rust"},
+          sync_install = false,
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+    end
 
 })

@@ -5,8 +5,14 @@ vim.opt.cursorline       = true
 vim.opt.number           = true
 vim.opt.showcmd          = true
 vim.opt.autowrite        = true
+
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=8")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
+
+vim.cmd('set background=dark')
+vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+vim.cmd("highlight NonText guibg=NONE ctermbg=NONE")
+
 vim.g.mapleader = " "
