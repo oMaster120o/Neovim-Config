@@ -1,6 +1,6 @@
-local lspconfig    = require('lspconfig')
+local lspconfig    = require("lspconfig")
 local util         = require "lspconfig/util"
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lspconfig.asm_lsp.setup
 {
@@ -13,7 +13,7 @@ lspconfig.asm_lsp.setup
 lspconfig.pylsp.setup
 {
   capabilities = capabilities,
-  filetypes    = {'python', 'py'},
+  filetypes    = {"python", "py"},
   settings =
   {
     pylsp =
@@ -30,36 +30,71 @@ lspconfig.pylsp.setup
 lspconfig.lua_ls.setup
 {
   capabilities = capabilities,
-  filetypes    = {'lua'},
+  filetypes    = {"lua"},
 }
 
 
 lspconfig.clangd.setup
 {
   capabilities = capabilities,
-  filetypes    = {'c', 'cpp', 'c++', 'header', 'h', '.h'},
+  filetypes    = {"c", "cpp", "c++", "header"},
+
+  init_options =
+  {
+      clangd =
+      {
+          formattingStyle =
+          {
+              BasedOnStyle = "Google",
+              BreakBeforeBraces = "Allman",
+              AllowShortBlocksOnASingleLine = "Empty",
+              AllowShortCaseLabelsOnASingleLine = true,
+              AllowShortFunctionsOnASingleLine = "Empty",
+              AllowShortIfStatementsOnASingleLine = true,
+              AllowShortLoopsOnASingleLine = true,
+          }
+      }
+  },
 }
 
 
 lspconfig.jsonls.setup
 {
   capabilities = capabilities,
-  filetypes    = {'json'},
+  filetypes    = {"json"},
 }
 
 
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
-  filetypes    = {'rust', 'rs'},
-  root_dir     = util.root_pattern('Cargo.toml'),
+  cmd          = { "/run/current-system/sw/bin/rust-analyzer" },
+  filetypes    = {"rust", "rs"},
+  root_dir     = util.root_pattern("Cargo.toml"),
   settings     =
   {
-    ['rust-analyzer'] =
+    ["rust-analyzer"] =
     {
+
       cargo =
       {
-        allFeatures = true,
+            allFeatures = true,
       },
+
+      procMacro =
+      {
+            enable = true,
+      },
+
+      diagnostics =
+      {
+            enable = true,
+      },
+
+      rustfmt =
+      {
+            config = { formatting_style = "Allman", },
+      },
+
     },
   },
 })

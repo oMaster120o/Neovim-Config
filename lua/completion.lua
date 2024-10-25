@@ -1,8 +1,9 @@
-local _lspconfig = require('lspconfig')
-local luasnip    = require('luasnip')
-local cmp        = require 'cmp'
+local _lspconfig   = require("lspconfig")
+local luasnip      = require("luasnip")
+local cmp          = require("cmp")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local servers = { 'asm_lsp', 'clangd', 'pylsp', 'rust_analyzer', 'jsonls', 'lua_ls' }
+local servers = { "asm_lsp", "clangd", "pylsp", "rust_analyzer", "jsonls", "lua_ls" }
 
 for _, lsp in ipairs(servers) do
 
@@ -16,6 +17,14 @@ end
 
 cmp.setup
 {
+
+  sources = cmp.config.sources ({
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+  }),
+
   snippet =
   {
     expand = function(args)
@@ -23,11 +32,15 @@ cmp.setup
     end,
   },
 
+  completion = {
+        completeopt = "menu,menuone,noinsert",
+    },
+
   mapping = cmp.mapping.preset.insert ({
-    ['<C-d>']     = cmp.mapping.scroll_docs(-4),
-    ['<C-f>']     = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>']      = cmp.mapping.confirm
+    ["<C-d>"]     = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"]     = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"]      = cmp.mapping.confirm
 
     {
       behavior    = cmp.ConfirmBehavior.Replace,
@@ -35,7 +48,7 @@ cmp.setup
     },
 
 
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
 
@@ -46,8 +59,8 @@ cmp.setup
         fallback()
       end
 
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
 
       if cmp.visible() then
         cmp.select_prev_item()
@@ -59,12 +72,8 @@ cmp.setup
         fallback()
 
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
   }),
 
-  sources = cmp.config.sources ({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }),
 
 }

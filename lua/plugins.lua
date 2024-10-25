@@ -14,13 +14,12 @@ require("lazy").setup({
 
   {"williamboman/mason.nvim"},
   {"williamboman/mason-lspconfig.nvim"},
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/cmp-buffer'},
-  {'hrsh7th/cmp-path'},
-  {'hrsh7th/cmp-cmdline'},
-  {'hrsh7th/nvim-cmp'},
-  {'hrsh7th/cmp-nvim-lsp'},
+  {"neovim/nvim-lspconfig"},
+  {"hrsh7th/cmp-nvim-lsp"},
+  {"hrsh7th/cmp-buffer"},
+  {"hrsh7th/cmp-path"},
+  {"hrsh7th/cmp-cmdline"},
+  {"hrsh7th/nvim-cmp"},
   {"nvim-tree/nvim-tree.lua", version = "*", lazy = false, dependencies = {"nvim-tree/nvim-web-devicons"},
   config = function()
     require("nvim-tree").setup {}
